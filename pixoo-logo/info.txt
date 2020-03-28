@@ -1,0 +1,15 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Comfortaa-Bold
+font link: https://fonts.google.com/specimen/Comfortaa
+font author: Johan Aakerlund
+font author site: https://aajohan.deviantart.com/
+
+
+
+fontColor: {"hex":"#ffffff"}
+bgColor: {"hex":"#FEDF0A"}
+
+
+      
