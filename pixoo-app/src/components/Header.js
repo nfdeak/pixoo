@@ -9,18 +9,21 @@ function Header ({}) {
         <Flex
             py="2"
             px="3"
-            bg="#FEDF0A"
-            height={"10%"}
-            boxShadow="md"
+            bg="#ffffff"
+            height="10%"
+            width="100%"
+            boxShadow="xl"
             alignItems="center"
             justifyContent="space-between"
+            zIndex="overlay"
+            pos="relative"
         >
             <Flex>
-                <Box as={TiChevronLeft} fontSize={["3xl"]} color="white" />
+                <Box as={TiChevronLeft} fontSize={["3xl"]} color="#ff0072" />
             </Flex>
             <Image src={logo} height={"100%"} />
             <Flex>
-                <Box as={TiThMenu} fontSize={["3xl"]} color="white" />
+                <Box as={TiThMenu} fontSize={["3xl"]} color="#ff0072" />
             </Flex>
         </Flex>
     );

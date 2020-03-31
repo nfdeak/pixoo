@@ -2,8 +2,9 @@ import React from "react";
 import {Router} from "@reach/router";
 import { theme, ThemeProvider, CSSReset } from "@chakra-ui/core";
 import Home from "./pages/Home";
-import Configurator from "./pages/Configurator";
+import Review from "./pages/Review";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
 
 const breakpoints = ["360px", "768px", "1024px", "1440px"];
@@ -23,8 +24,9 @@ export default () => (
         <Header/>
         <Router>
             <Home path="/" />
-            <Configurator path="config" />
+            <Review path="review" />
             <NotFound default/>
         </Router>
+        <Footer/>
     </ThemeProvider>
 );
