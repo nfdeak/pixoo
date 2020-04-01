@@ -6,7 +6,7 @@ import bg from '../resources/bg.jpg';
 export default () => (
     <Flex
         bgImage={"url(" + bg + ")"} bgPos="center top" bgRepeat="no-repeat" bgSize="cover"
-        height="76%"
+        height="83%"
         w="100%"
         alignItems="center"
         justifyContent="center"
