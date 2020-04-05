@@ -18,13 +18,9 @@ function Header ({}) {
             zIndex="overlay"
             pos="relative"
         >
-            <Flex>
-                <Box as={TiChevronLeft} fontSize={["3xl"]} color="#ff0072" />
-            </Flex>
+            <Box as={TiChevronLeft} fontSize={["3xl"]} color="#ff0072" />
             <Image src={logo} height={"100%"} />
-            <Flex>
-                <Box as={TiThMenu} fontSize={["3xl"]} color="#ff0072" />
-            </Flex>
+            <Box as={TiThMenu} fontSize={["3xl"]} color="#ff0072" />
         </Flex>
     );
 };
