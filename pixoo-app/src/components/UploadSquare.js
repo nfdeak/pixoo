@@ -17,8 +17,8 @@ function UploadSquare ({}) {
         >
             <Flex
                 bg="hsla(0,0%,100%,.7)"
-                height="210px"
-                w="210px"
+                h="230px"
+                w="230px"
                 rounded="12px"
             >
             </Flex>

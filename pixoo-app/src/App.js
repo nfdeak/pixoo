@@ -1,9 +1,8 @@
 import React from "react";
 import {Router} from "@reach/router";
-import { theme, ThemeProvider, CSSReset } from "@chakra-ui/core";
+import { theme, ThemeProvider, CSSReset, Grid } from "@chakra-ui/core";
 import Home from "./pages/Home";
 import Review from "./pages/Review";
-import Header from "./components/Header";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
 
@@ -21,12 +20,10 @@ const newTheme = {
 export default () => (
     <ThemeProvider theme={newTheme}>
         <CSSReset />
-        <Header/>
         <Router>
             <Home path="/" />
             <Review path="review" />
             <NotFound default/>
         </Router>
-        <Footer/>
     </ThemeProvider>
 );
