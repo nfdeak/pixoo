@@ -23,10 +23,10 @@ function Header ({}) {
                 alignItems="center"
                 justifyContent="center"
             >
-                <Image src={white} w="75px" backgroundImage="linear-gradient(0deg,rgba(255,0,149,.25),rgba(255,0,149,0))"/>
-                <Image src={black} w="75px"/>
-                <Image src={mocha} w="75px"/>
-                <Image src={latte} w="75px" pb={1}/>
+                <Image src={white} w="75px" h="83px" backgroundImage="linear-gradient(0deg,rgba(255,0,149,.25),rgba(255,0,149,0))"/>
+                <Image src={black} w="75px" h="83px"/>
+                <Image src={mocha} w="75px" h="83px"/>
+                <Image src={latte} w="75px" h="83px"/>
             </Flex>
         </Box>
     );
