@@ -31,10 +31,10 @@ function UploadSquare ({}) {
                     direction="normal"
                     duration={1.5}
                     keyframes={[
-                        {0:' transform: scale(.95)'},{50:' transform: scale(1)'},{100:' transform: scale(.95)'},
+                        {0:' transform: scale(.95); color: grey'},{50:' transform: scale(1); color:#ff0072'},{100:' transform: scale(.95); color:grey'},
                     ]}
                 >
-                <Box as={FiPlus} fontSize="45px" color="#ff0072" />
+                <Box as={FiPlus} fontSize="45px" />
                 </AnimateKeyframes>
             </Flex>
         </AnimateKeyframes>

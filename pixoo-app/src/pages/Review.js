@@ -1,19 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Flex  } from '@chakra-ui/core';
 import UploadSquare from "../components/UploadSquare";
 import bg from '../resources/bg.jpg';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import {
-    Drawer,
-    DrawerBody,
-    DrawerFooter,
-    DrawerHeader,
-    DrawerOverlay,
-    DrawerContent,
-    DrawerCloseButton,
-    Button, Input
-} from "@chakra-ui/core";
+import {Drawer,DrawerHeader,DrawerOverlay,DrawerContent, DrawerCloseButton} from "@chakra-ui/core";
 import { useDisclosure } from "@chakra-ui/core";
 
 function Review() {
@@ -36,14 +27,12 @@ function Review() {
             </Flex>
             <Drawer
                 isOpen={isOpen}
-                placement="right"
+                placement="bottom"
                 onClose={onClose}
             >
                 <DrawerOverlay />
                 <DrawerContent>
-                    <DrawerCloseButton />
                     <DrawerHeader>Create your account</DrawerHeader>
-                    <Flex id="paypal-button-container"></Flex>
                 </DrawerContent>
             </Drawer>
             <Footer onOpen={onOpen}/>
