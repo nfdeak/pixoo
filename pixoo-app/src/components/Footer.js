@@ -12,6 +12,7 @@ function Footer ({
             alignItems="center"
             justify="center"
             w="100%"
+            zIndex={1}
         >
             <Button color="white" bg="#ff0072" size="lg"  width={["93%","93%","29%"]} rounded="12px" onClick={onOpen}>
                 Button

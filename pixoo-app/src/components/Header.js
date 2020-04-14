@@ -9,7 +9,7 @@ import latte from '../resources/latte.png';
 function Header ({}) {
 
     return (
-        <Box bg="#ffffff"  width="100%" boxShadow="xl">
+        <Box bg="#ffffff"  width="100%" boxShadow="xl" zIndex={1}>
             <Flex
                 p={2}
                 alignItems="center"
