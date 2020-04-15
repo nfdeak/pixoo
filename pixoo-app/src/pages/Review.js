@@ -1,11 +1,13 @@
 import React from "react";
-import { Flex, Box  } from '@chakra-ui/core';
+import {Flex, Image, Grid} from '@chakra-ui/core';
 import UploadSquare from "../components/UploadSquare";
 import bg from '../resources/bg.jpg';
+import whiteFrame from '../resources/whiteFrame.svg';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import {Drawer,DrawerHeader,DrawerOverlay,DrawerContent, DrawerCloseButton} from "@chakra-ui/core";
-import { useDisclosure } from "@chakra-ui/core";
+import {Drawer, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton} from "@chakra-ui/core";
+import {useDisclosure} from "@chakra-ui/core";
+import test from "../resources/test.jpg";
 
 function Review() {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -14,16 +16,18 @@ function Review() {
         {id: 2, title: 'Installation', content: 'You can install React from npm.'},
     ];
     const photos = photosArray.map((photo) =>
-        <Box bg="tomato"
-             h="230px"
-             minWidth="230px"
-             mx={5}
-             key={photo.id}
+        <Grid
+              h="253px"
+              minWidth="253px"
+              mr={5}
+              key={photo.id}
         >
-        </Box>
+            <Image maxWidth="100%" maxHeight="100%" p={2} src={test} gridArea="1 / 1"></Image>
+            <Image maxWidth="100%" maxHeight="100%" src={whiteFrame} gridArea="1 / 1"></Image>
+        </Grid>
     );
-    return(
-        <Flex direction="column" h="100%" >
+    return (
+        <Flex direction="column" h="100%">
             <Header/>
             <Flex
                 bgImage={"url(" + bg + ")"} bgPos="center top" bgRepeat="no-repeat" bgSize="cover"
@@ -33,13 +37,11 @@ function Review() {
                 justifyContent="flex-start"
                 overflowX="auto"
             >
-                <Box minWidth="10px" h="230px" bg="transparent"></Box>
-                <UploadSquare/>
+                <Flex mx={5}><UploadSquare/></Flex>
                 {photos}
-                <Box minWidth="10px" h="230px" bg="transparent"></Box>
             </Flex>
             <Drawer isOpen={isOpen} placement="bottom" onClose={onClose}>
-                <DrawerOverlay />
+                <DrawerOverlay/>
                 <DrawerContent>
                     <DrawerHeader>Create your account</DrawerHeader>
                 </DrawerContent>
@@ -48,4 +50,5 @@ function Review() {
         </Flex>
     );
 }
+
 export default Review;
