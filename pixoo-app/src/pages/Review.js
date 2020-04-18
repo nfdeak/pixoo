@@ -20,7 +20,7 @@ function Review() {
 
     const photosInFrames = photosArray.map((photo) =>
         <AnimateKeyframes  play duration={0.28} keyframes={[{0: ' transform: scale(0)'}, {100: ' transform: scale(1)'},]} key={photo.id}>
-            <Grid h="253px" maxW="253px" mr={5}>
+            <Grid h="253px" minW="253px" mr={5}>
                 <Image maxW="100%" maxH="100%" minW="100%" minH="100%" p={2} src={photo.src} objectFit="cover" gridArea="1 / 1"/>
                 <Image maxW="100%" maxH="100%" minW="100%" minH="100%" src={whiteFrame} gridArea="1 / 1"/>
             </Grid>
