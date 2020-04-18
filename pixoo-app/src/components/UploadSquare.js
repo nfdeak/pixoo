@@ -20,12 +20,7 @@ function UploadSquare({
     };
 
     return (
-        <AnimateKeyframes
-            play={true}
-            pause={false}
-            iterationCount="infinite"
-            direction="normal"
-            duration={1.5}
+        <AnimateKeyframes play={true} pause={false} iterationCount="infinite" direction="normal" duration={1.5}
             keyframes={[
                 {0: ' transform: scale(.95);border:4px solid grey; border-radius:12px; color: grey'}, {50: ' transform: scale(1);border:4px solid #ff0072;border-radius:12px; color: #ff0072'}, {100: ' transform: scale(.95);border:4px solid grey;border-radius:12px; color: grey'},
             ]}
