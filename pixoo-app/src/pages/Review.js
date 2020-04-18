@@ -7,7 +7,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {Drawer, DrawerHeader, DrawerOverlay, DrawerContent} from "@chakra-ui/core";
 import {useDisclosure} from "@chakra-ui/core";
-import test from "../resources/test.jpg";
 
 function Review() {
     const {isOpen, onOpen, onClose} = useDisclosure();
@@ -15,12 +14,12 @@ function Review() {
 
 
     const addNewPhoto  = (base64URL) => {
-        setPhotosArray(photosArray => photosArray.concat(base64URL));
+        setPhotosArray(photosArray => [{src:base64URL, id: Date.now()}].concat(photosArray));
     }
 
-    const photos = photosArray.map((photo, index) =>
-        <Grid h="253px" minWidth="253px" mr={5} key={index}>
-            <Image maxW="100%" maxH="100%" p={2} src={photo} gridArea="1 / 1"/>
+    const photosInFrames = photosArray.map((photo) =>
+        <Grid h="253px" minWidth="253px" mr={5} key={photo.id}>
+            <Image maxW="100%" maxH="100%" p={2} src={photo.src} gridArea="1 / 1"/>
             <Image maxW="100%" maxH="100%" src={whiteFrame} gridArea="1 / 1"/>
         </Grid>);
 
@@ -36,7 +35,7 @@ function Review() {
                 overflowX="auto"
             >
                 <Flex mx={5}><UploadSquare onUploadPhoto={addNewPhoto}/></Flex>
-                {photos}
+                {photosInFrames}
             </Flex>
             <Drawer isOpen={isOpen} placement="bottom" onClose={onClose}>
                 <DrawerOverlay/>

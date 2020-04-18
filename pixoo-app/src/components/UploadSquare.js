@@ -41,7 +41,7 @@ function UploadSquare({
                 cursor="pointer"
             >
                 <Box as={FiPlus} fontSize="45px"/>
-                <Input type="file" accept="image/*" onChange={handleImageUpload} ref={imageUploaderRef} display="none"/>
+                <Input value={""} type="file" accept="image/*" onChange={handleImageUpload} ref={imageUploaderRef} display="none"/>
             </Flex>
         </AnimateKeyframes>
     );
