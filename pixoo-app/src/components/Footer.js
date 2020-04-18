@@ -2,7 +2,7 @@ import {Flex, Button} from "@chakra-ui/core";
 import React from "react";
 
 function Footer ({
-    onOpen
+    onClickButton
 }) {
     return (
         <Flex
@@ -14,7 +14,7 @@ function Footer ({
             w="100%"
             zIndex={1}
         >
-            <Button color="white" bg="#ff0072" size="lg"  width={["93%","93%","29%"]} rounded="12px" onClick={onOpen}>
+            <Button color="white" bg="#ff0072" size="lg"  width={["93%","93%","29%"]} rounded="12px" onClick={onClickButton}>
                 Button
             </Button>
         </Flex>

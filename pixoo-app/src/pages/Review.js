@@ -1,31 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import {Flex, Image, Grid} from '@chakra-ui/core';
 import UploadSquare from "../components/UploadSquare";
 import bg from '../resources/bg.jpg';
 import whiteFrame from '../resources/whiteFrame.svg';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import {Drawer, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton} from "@chakra-ui/core";
+import {Drawer, DrawerHeader, DrawerOverlay, DrawerContent} from "@chakra-ui/core";
 import {useDisclosure} from "@chakra-ui/core";
 import test from "../resources/test.jpg";
 
 function Review() {
     const {isOpen, onOpen, onClose} = useDisclosure();
-    const photosArray = [
-        {id: 1, title: 'Hello World', content: 'Welcome to learning React!'},
-        {id: 2, title: 'Installation', content: 'You can install React from npm.'},
-    ];
-    const photos = photosArray.map((photo) =>
-        <Grid
-              h="253px"
-              minWidth="253px"
-              mr={5}
-              key={photo.id}
-        >
-            <Image maxWidth="100%" maxHeight="100%" p={2} src={test} gridArea="1 / 1"></Image>
-            <Image maxWidth="100%" maxHeight="100%" src={whiteFrame} gridArea="1 / 1"></Image>
-        </Grid>
-    );
+    const [photosArray, setPhotosArray] = useState([])
+
+
+    const addNewPhoto  = (base64URL) => {
+        setPhotosArray(photosArray => photosArray.concat(base64URL));
+    }
+
+    const photos = photosArray.map((photo, index) =>
+        <Grid h="253px" minWidth="253px" mr={5} key={index}>
+            <Image maxW="100%" maxH="100%" p={2} src={photo} gridArea="1 / 1"/>
+            <Image maxW="100%" maxH="100%" src={whiteFrame} gridArea="1 / 1"/>
+        </Grid>);
+
     return (
         <Flex direction="column" h="100%">
             <Header/>
@@ -37,7 +35,7 @@ function Review() {
                 justifyContent="flex-start"
                 overflowX="auto"
             >
-                <Flex mx={5}><UploadSquare/></Flex>
+                <Flex mx={5}><UploadSquare onUploadPhoto={addNewPhoto}/></Flex>
                 {photos}
             </Flex>
             <Drawer isOpen={isOpen} placement="bottom" onClose={onClose}>
@@ -46,7 +44,7 @@ function Review() {
                     <DrawerHeader>Create your account</DrawerHeader>
                 </DrawerContent>
             </Drawer>
-            <Footer onOpen={onOpen}/>
+            <Footer onClickButton={onOpen}/>
         </Flex>
     );
 }
