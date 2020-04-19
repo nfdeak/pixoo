@@ -12,7 +12,7 @@ import {AnimateKeyframes} from "react-simple-animate";
 function Review() {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [photosArray, setPhotosArray] = useState([])
-    const [ justifyContent, setJustifyContent] = useState('center');
+    const [justifyContent, setJustifyContent] = useState('center');
 
 
     const addNewPhoto  = (base64URL) => {
@@ -39,7 +39,7 @@ function Review() {
                 justifyContent={justifyContent}
                 overflowX="auto"
             >
-                <Flex mx={5}><UploadSquare onUploadPhoto={addNewPhoto}/></Flex>
+                <Flex mx={5}><UploadSquare isAnimating={ photosArray.length==0 ? true : false} onUploadPhoto={addNewPhoto}/></Flex>
                 {photosInFrames}
             </Flex>
             <Drawer isOpen={isOpen} placement="bottom" onClose={onClose}>
