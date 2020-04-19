@@ -12,9 +12,11 @@ import {AnimateKeyframes} from "react-simple-animate";
 function Review() {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [photosArray, setPhotosArray] = useState([])
+    const [ justifyContent, setJustifyContent] = useState('center');
 
 
     const addNewPhoto  = (base64URL) => {
+        setJustifyContent('flex-start');
         setPhotosArray(photosArray => [{src:base64URL, id: Date.now()}].concat(photosArray));
     }
 
@@ -34,7 +36,7 @@ function Review() {
                 w="100%"
                 h="100%"
                 alignItems="center"
-                justifyContent="flex-start"
+                justifyContent={justifyContent}
                 overflowX="auto"
             >
                 <Flex mx={5}><UploadSquare onUploadPhoto={addNewPhoto}/></Flex>
