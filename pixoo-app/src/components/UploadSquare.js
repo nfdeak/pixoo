@@ -1,6 +1,7 @@
-import {Flex, Box, Input} from "@chakra-ui/core";
-import React, {useState} from "react";
-import {AnimateKeyframes} from "react-simple-animate";
+/*@jsx jsx*/
+import { jsx , css, keyframes } from "@emotion/core";
+import {Flex, Box, Input, Icon} from "@chakra-ui/core";
+import React from "react";
 import {FiPlus} from "react-icons/fi";
 
 function UploadSquare({
@@ -20,12 +21,19 @@ function UploadSquare({
         }
     };
 
+    const pulse = keyframes`
+      0% {
+        transform: scale(.95);border:4px dashed grey; border-radius:12px; color: grey
+      }
+      50%{
+        transform: scale(1);border:4px dashed #ff0072;border-radius:12px; color: #ff0072
+      }
+      100% {
+        transform: scale(.95);border:4px dashed grey;border-radius:12px; color: grey
+      }
+    `
+
     return (
-        <AnimateKeyframes play={isAnimating} pause={!isAnimating} iterationCount="infinite" direction="normal" duration={1.5}
-                          keyframes={[
-                              {0: ' transform: scale(.95);border:4px dashed grey; border-radius:12px; color: grey'}, {50: ' transform: scale(1);border:4px dashed #ff0072;border-radius:12px; color: #ff0072'}, {100: ' transform: scale(.95);border:4px dashed grey;border-radius:12px; color: grey'},
-                          ]}
-        >
             <Flex
                 bg="hsla(0,0%,100%,.7)"
                 h="238px"
@@ -35,12 +43,13 @@ function UploadSquare({
                 justifyContent="center"
                 onClick={() => imageUploaderRef.current.click()}
                 cursor="pointer"
-                border-style="dashed"
+                border='4px dashed grey'
+                color='grey'
+                css={isAnimating? css`animation: ${pulse} 1.7s linear infinite;animation-play-state:running; &:hover {animation-play-state:paused;}` : undefined}
             >
                 <Box as={FiPlus} fontSize="45px"/>
+                <Input value={""} type="file" accept="image/*" onChange={handleImageUpload} ref={imageUploaderRef} display="none"/>
             </Flex>
-            <Input value={""} type="file" accept="image/*" onChange={handleImageUpload} ref={imageUploaderRef} display="none"/>
-        </AnimateKeyframes>
     );
 };
 

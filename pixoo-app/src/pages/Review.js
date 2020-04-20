@@ -1,3 +1,5 @@
+/*@jsx jsx*/
+import { jsx , css, keyframes } from "@emotion/core";
 import React, { useState } from "react";
 import {Flex, Image, Grid} from '@chakra-ui/core';
 import UploadSquare from "../components/UploadSquare";
@@ -7,13 +9,20 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {Drawer, DrawerHeader, DrawerOverlay, DrawerContent} from "@chakra-ui/core";
 import {useDisclosure} from "@chakra-ui/core";
-import {AnimateKeyframes} from "react-simple-animate";
 
 function Review() {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [photosArray, setPhotosArray] = useState([])
     const [justifyContent, setJustifyContent] = useState('center');
 
+    const easeIn = keyframes`
+      0% {
+        transform: scale(0)
+      }
+      100% {
+        transform: scale(1)
+      }
+    `
 
     const addNewPhoto  = (base64URL) => {
         setJustifyContent('flex-start');
@@ -21,12 +30,10 @@ function Review() {
     }
 
     const photosInFrames = photosArray.map((photo) =>
-        <AnimateKeyframes  play duration={0.28} keyframes={[{0: ' transform: scale(0)'}, {100: ' transform: scale(1)'},]} key={photo.id}>
-            <Grid h="253px" minW="253px" mr={5}>
-                <Image maxW="100%" maxH="100%" minW="100%" minH="100%" p={2} src={photo.src} objectFit="cover" gridArea="1 / 1"/>
-                <Image maxW="100%" maxH="100%" minW="100%" minH="100%" src={whiteFrame} gridArea="1 / 1"/>
-            </Grid>
-        </AnimateKeyframes>);
+        <Grid h="253px" minW="253px" mr={5} key={photo.id} css={css`animation: ${easeIn} 0.28s ease;`}>
+            <Image maxW="100%" maxH="100%" minW="100%" minH="100%" p={2} src={photo.src} objectFit="cover" gridArea="1 / 1"/>
+            <Image maxW="100%" maxH="100%" minW="100%" minH="100%" src={whiteFrame} gridArea="1 / 1"/>
+        </Grid>);
 
     return (
         <Flex direction="column" h="100%">
