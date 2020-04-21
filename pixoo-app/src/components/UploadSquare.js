@@ -36,8 +36,8 @@ function UploadSquare({
     return (
             <Flex
                 bg="hsla(0,0%,100%,.7)"
-                h="238px"
-                w="238px"
+                minH="238px"
+                minW="238px"
                 rounded="12px"
                 alignItems="center"
                 justifyContent="center"
