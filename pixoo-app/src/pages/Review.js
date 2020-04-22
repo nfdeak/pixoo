@@ -4,7 +4,8 @@ import React, { useState, useEffect } from "react";
 import {Flex, Image, Grid} from '@chakra-ui/core';
 import UploadSquare from "../components/UploadSquare";
 import bg from '../resources/bg.jpg';
-import whiteFrame from '../resources/whiteFrame.svg';
+import white from '../resources/whiteFrame.svg';
+import black from '../resources/blackFrame.svg';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {Drawer, DrawerHeader, DrawerOverlay, DrawerContent} from "@chakra-ui/core";
@@ -14,6 +15,7 @@ function Review() {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [photosArray, setPhotosArray] = useState([])
     const [justifyContent, setJustifyContent] = useState('center');
+    const [selectedFrame, setSelectedFrame] = useState(white);
 
     const fadeIn = keyframes`
       0% {
@@ -23,6 +25,13 @@ function Review() {
         opacity:1
       }
     `
+
+    const onChangeFrame  = (frame) => {
+        if(frame==='white') setSelectedFrame(white);
+        if(frame==='black') setSelectedFrame(black);
+        if(frame==='mocha') setSelectedFrame(black);
+        if(frame==='latte') setSelectedFrame(black);
+    }
 
     const removePhoto  = () => {
         if(photosArray.length==0)
@@ -44,12 +53,12 @@ function Review() {
     const photosInFrames = photosArray.map((photo,index) =>
         <Grid id="middle" h="253px" minW="253px" mx={2} key={photo.id} css={css`animation: ${fadeIn} 0.35s ease;`}>
             <Image maxW="100%" maxH="100%" minW="100%" minH="100%" p={2} src={photo.src} objectFit="cover" gridArea="1 / 1"/>
-            <Image maxW="100%" maxH="100%" minW="100%" minH="100%" src={whiteFrame} gridArea="1 / 1"/>
+            <Image maxW="100%" maxH="100%" minW="100%" minH="100%" src={selectedFrame} gridArea="1 / 1"/>
         </Grid>);
 
     return (
         <Flex direction="column" h="100%">
-            <Header/>
+            <Header onChangeFrame={onChangeFrame} />
             <Flex
                 bgImage={"url(" + bg + ")"} bgPos="center top" bgRepeat="no-repeat" bgSize="cover"
                 w="100%"
