@@ -6,16 +6,18 @@ import {FiPlus} from "react-icons/fi";
 
 function UploadSquare({
                           onUploadPhoto,
-                          isAnimating
+                          isAnimating,
+                          position
                       }) {
     const imageUploaderRef = React.useRef();
+    const id = Date.now();
 
     const handleImageUpload = e => {
         const [file] = e.target.files;
         if (file) {
             const reader = new FileReader();
             reader.onload = e => {
-                onUploadPhoto(e.target.result);
+                onUploadPhoto(e.target.result,position);
             };
             reader.readAsDataURL(file);
         }
@@ -35,13 +37,14 @@ function UploadSquare({
 
     return (
             <Flex
+                id={id}
                 bg="hsla(0,0%,100%,.7)"
                 minH="238px"
                 minW="238px"
                 rounded="12px"
                 alignItems="center"
                 justifyContent="center"
-                onClick={() => imageUploaderRef.current.click()}
+                onClick={() => {imageUploaderRef.current.click(); document.getElementById(id).scrollIntoView({ inline: 'center',behavior: 'smooth' });}}
                 cursor="pointer"
                 border='4px dashed grey'
                 color='grey'
