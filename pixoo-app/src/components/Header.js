@@ -23,9 +23,9 @@ function Header({
                 alignItems="center"
                 justifyContent="space-between"
             >
-                <Box as={FiChevronLeft} fontSize={["3xl"]} color="#ff0072"/>
+                <Box as={FiChevronLeft} fontSize={["3xl"]} color="primary"/>
                 <Text>Style Photos</Text>
-                <Box as={FiMenu} fontSize={["3xl"]} color="#ff0072"/>
+                <Box as={FiMenu} fontSize={["3xl"]} color="primary"/>
             </Flex>
             <Flex
                 alignItems="center"

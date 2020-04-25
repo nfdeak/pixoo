@@ -1,4 +1,4 @@
-import {Flex, Button} from "@chakra-ui/core";
+import {Flex, PseudoBox} from "@chakra-ui/core";
 import React from "react";
 
 function Footer ({
@@ -14,9 +14,19 @@ function Footer ({
             w="100%"
             zIndex={1}
         >
-            <Button color="white" bg="#ff0072" size="lg"  width={["93%","93%","43%", "29%"]} rounded="12px" onClick={onClickButton}>
-                Button
-            </Button>
+            <PseudoBox
+                as="button"
+                height="50px"
+                width={["93%","93%","43%", "29%"]}
+                rounded="12px"
+                fontSize="18px"
+                fontWeight="bold"
+                bg="primary"
+                color="white"
+                onClick={onClickButton}
+            >
+                Checkout
+            </PseudoBox>
         </Flex>
     );
 };

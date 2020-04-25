@@ -1,11 +1,13 @@
 import {keyframes} from "@emotion/core";
+import * as colors from '../utils/colors';
+import {primary} from "../utils/colors";
 
 export const pulse = keyframes`
       0% {
         transform: scale(.95);border:4px dashed grey; border-radius:12px; color: grey
       }
       50%{
-        transform: scale(1);border:4px dashed #ff0072;border-radius:12px; color: #ff0072
+        transform: scale(1);border:4px dashed ${primary};border-radius:12px; color: ${primary}
       }
       100% {
         transform: scale(.95);border:4px dashed grey;border-radius:12px; color: grey
