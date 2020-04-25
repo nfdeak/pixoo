@@ -1,5 +1,5 @@
 /*@jsx jsx*/
-import { jsx , css, keyframes } from "@emotion/core";
+import { jsx , css } from "@emotion/core";
 import React, { useState, useEffect } from "react";
 import {Flex, Image, Grid, Drawer, DrawerHeader, DrawerOverlay, DrawerContent, useDisclosure} from '@chakra-ui/core';
 import UploadSquare from "../components/UploadSquare";
@@ -8,21 +8,13 @@ import white from '../resources/whiteFrame.svg';
 import black from '../resources/blackFrame.svg';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import * as keyframes from '../utils/keyframes';
 
 function Review() {
     const {isOpen, onOpen, onClose} = useDisclosure();
     const [photosArray, setPhotosArray] = useState([])
     const [justifyContent, setJustifyContent] = useState('center');
     const [selectedFrame, setSelectedFrame] = useState(white);
-
-    const fadeIn = keyframes`
-      0% {
-        opacity:0
-      }
-      100% {
-        opacity:1
-      }
-    `
 
     const onChangeFrame  = (frame) => {
         setSelectedFrame(frame==='white'? white :(frame==='black'? black : (frame==='mocha' ? black:(frame==='latte' ? black:undefined))));
@@ -42,7 +34,7 @@ function Review() {
     }, [photosArray]);
 
     const photosInFrames = photosArray.map((photo) =>
-        <Grid id="picture-frame" h="253px" minW="253px" mx={2} key={photo.id} css={css`animation: ${fadeIn} 0.6s ease;`}>
+        <Grid id="picture-frame" h="253px" minW="253px" mx={2} key={photo.id} css={css`animation: ${keyframes.fadeIn} 0.5s ease;`}>
             <Image maxW="100%" maxH="100%" minW="100%" minH="100%" p={2} src={photo.src} objectFit="cover" gridArea="1 / 1"/>
             <Image maxW="100%" maxH="100%" minW="100%" minH="100%" src={selectedFrame} gridArea="1 / 1"/>
         </Grid>);
