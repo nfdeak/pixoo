@@ -1,15 +1,18 @@
 import React, {useState} from 'react';
-import {Flex, Box, Text, Image} from '@chakra-ui/core';
+import {Flex, Box, Text, Image,Menu,MenuButton,MenuList,MenuItem} from '@chakra-ui/core';
 import {FiChevronLeft, FiMenu} from "react-icons/fi";
+import { useNavigate } from "@reach/router"
 import white from '../resources/white.png';
 import black from '../resources/black.png';
 import mocha from '../resources/mocha.png';
 import latte from '../resources/latte.png';
 
 function Header({
-                          onChangeFrame,
-                      }) {
+                    onChangeFrame,
+                }) {
     const [selectedFrame, setSelectedFrame] = useState('white');
+    const navigate = useNavigate();
+
 
     const selectFrame  = (frame) => {
         setSelectedFrame(frame);
@@ -23,9 +26,17 @@ function Header({
                 alignItems="center"
                 justifyContent="space-between"
             >
-                <Box as={FiChevronLeft} fontSize={["3xl"]} color="primary"/>
+                <Box as={FiChevronLeft} fontSize={["3xl"]} color="primary" onClick={() => navigate('../', { replace: false })} cursor={"pointer"}/>
                 <Text>Style Photos</Text>
-                <Box as={FiMenu} fontSize={["3xl"]} color="primary"/>
+                <Menu>
+                    <MenuButton>
+                        <Box as={FiMenu} fontSize={["3xl"]} color="primary"/>
+                    </MenuButton>
+                    <MenuList>
+                        <MenuItem>New File</MenuItem>
+                        <MenuItem>New Window</MenuItem>
+                    </MenuList>
+                </Menu>
             </Flex>
             <Flex
                 alignItems="center"
