@@ -28,7 +28,7 @@ function Review() {
     }
 
     const photosInFrames = photosArray.map((photo,index) =>
-        <Grid id={index === 0 ? 'first': index+1 === photosArray.length ? 'last':undefined} h="253px" minW="253px" mx={2} key={photo.id} css={css`animation: ${keyframes.fadeIn} 0.5s ease;`}>
+        <Grid id={index === 0 ? 'first': index+1 === photosArray.length ? 'last':undefined} h="253px" minW="253px" maxW="235px" mx={2} key={photo.id} css={css`animation: ${keyframes.fadeIn} 0.5s ease;`}>
             <Image maxW="100%" maxH="100%" minW="100%" minH="100%" p={2} src={photo.src} objectFit="cover" gridArea="1 / 1"/>
             <Image maxW="100%" maxH="100%" minW="100%" minH="100%" src={selectedFrame} gridArea="1 / 1"/>
         </Grid>);
