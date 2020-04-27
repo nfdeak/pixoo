@@ -45,10 +45,15 @@ function Review() {
                   px={2}
                   css={css`-ms-overflow-style: none;scrollbar-width: none;::-webkit-scrollbar{display: none;}`}
             >
-                <Flex mx={2}><UploadSquare isAnimating={photosArray.length===0} onUploadPhoto={addNewPhoto} position="left"/></Flex>
-                {photosInFrames}
-                {photosArray.length>0 ? <Flex mx={2} display={["flex","flex","none","none"]}><UploadSquare isAnimating={ false} onUploadPhoto={addNewPhoto} position="right"/></Flex>:undefined}
-                {photosArray.length>0 ? <Flex minW={2} visibility="hidden">.</Flex>:undefined}
+                <Flex css={css`padding-right: 8px`}>
+                    <Flex mx={2}>
+                        <UploadSquare isAnimating={photosArray.length===0} onUploadPhoto={addNewPhoto} position="left"/>
+                    </Flex>
+                    {photosInFrames}
+                    {photosArray.length > 0 && <Flex mx={2} display={["flex","flex","none","none"]}>
+                        <UploadSquare isAnimating={ false} onUploadPhoto={addNewPhoto} position="right"/>
+                    </Flex>}
+                </Flex>
             </Flex>
             <Drawer isOpen={isOpen} placement="bottom" onClose={onClose}>
                 <DrawerOverlay/>
