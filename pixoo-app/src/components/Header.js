@@ -7,9 +7,7 @@ import black from '../resources/black.png';
 import mocha from '../resources/mocha.png';
 import latte from '../resources/latte.png';
 
-function Header({
-                    onChangeFrame,
-                }) {
+function Header({onChangeFrame}) {
     const [selectedFrame, setSelectedFrame] = useState('white');
     const navigate = useNavigate();
 

@@ -1,17 +1,21 @@
 /*@jsx jsx*/
 import { jsx , css } from "@emotion/core";
 import React, { useState, useEffect } from "react";
-import {Flex, Image, Grid, Drawer, DrawerHeader, DrawerOverlay, DrawerContent, useDisclosure} from '@chakra-ui/core';
+import {Flex, Image, Grid, useDisclosure} from '@chakra-ui/core';
 import UploadSquare from "../components/UploadSquare";
 import bg from '../resources/bg.jpg';
 import white from '../resources/whiteFrame.svg';
 import black from '../resources/blackFrame.svg';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import DrawerComponent from "../components/DrawerComponent";
+import ModalComponent from "../components/ModallComponent";
 import * as keyframes from '../utils/keyframes';
 
 function Review() {
-    const {isOpen, onOpen, onClose} = useDisclosure();
+    const {isOpen: isOpenDrawer, onOpen: onOpenDrawer, onClose: onCloseDrawer} = useDisclosure();
+    const {isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal} = useDisclosure();
+
     const [photosArray, setPhotosArray] = useState([])
     const [selectedFrame, setSelectedFrame] = useState(white);
 
@@ -28,7 +32,7 @@ function Review() {
     }
 
     const photosInFrames = photosArray.map((photo,index) =>
-        <Grid id={index === 0 ? 'first': index+1 === photosArray.length ? 'last':undefined} h="253px" minW="253px" maxW="253px" maxH="253px" mx={2} key={photo.id} css={css`animation: ${keyframes.fadeIn} 0.5s ease;`}>
+        <Grid onClick={onOpenModal} id={index === 0 ? 'first': index+1 === photosArray.length ? 'last':undefined} h="253px" minW="253px" maxW="253px" maxH="253px" mx={2} key={photo.id} css={css`animation: ${keyframes.fadeIn} 0.5s ease;`} cursor="pointer">
             <Image maxW="100%" maxH="100%" minW="100%" minH="100%" p={2} src={photo.src} objectFit="cover" gridArea="1 / 1"/>
             <Image maxW="100%" maxH="100%" minW="100%" minH="100%" src={selectedFrame} gridArea="1 / 1"/>
         </Grid>);
@@ -51,13 +55,9 @@ function Review() {
                     {photosArray.length > 0 && <Flex mx={2} display={["flex","flex","none","none"]}><UploadSquare isAnimating={ false} onUploadPhoto={addNewPhoto} position="right"/></Flex>}
                 </Flex>
             </Flex>
-            <Drawer isOpen={isOpen} placement="bottom" onClose={onClose}>
-                <DrawerOverlay/>
-                <DrawerContent>
-                    <DrawerHeader>Create your account</DrawerHeader>
-                </DrawerContent>
-            </Drawer>
-            <Footer onClickButton={onOpen}/>
+            <DrawerComponent isOpen={isOpenDrawer} onClose={onCloseDrawer}/>
+            <ModalComponent isOpen={isOpenModal} onClose={onCloseModal}></ModalComponent>
+            <Footer onClickButton={onOpenDrawer}/>
         </Flex>
     );
 }

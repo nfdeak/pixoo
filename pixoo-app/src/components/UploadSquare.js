@@ -5,11 +5,7 @@ import React from "react";
 import {FiPlus} from "react-icons/fi";
 import * as keyframes from '../utils/keyframes';
 
-function UploadSquare({
-                          onUploadPhoto,
-                          isAnimating,
-                          position
-                      }) {
+function UploadSquare({onUploadPhoto, isAnimating, position}) {
     const imageUploaderRef = React.useRef();
 
     const handleImageUpload = e => {

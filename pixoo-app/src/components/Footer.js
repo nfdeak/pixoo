@@ -1,9 +1,7 @@
 import {Flex, PseudoBox} from "@chakra-ui/core";
 import React from "react";
 
-function Footer ({
-                     onClickButton
-}) {
+function Footer ({onClickButton}) {
     return (
         <Flex
             p={4}
