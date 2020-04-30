@@ -8,8 +8,8 @@ import white from '../resources/whiteFrame.svg';
 import black from '../resources/blackFrame.svg';
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import DrawerComponent from "../components/DrawerComponent";
-import ModalComponent from "../components/ModallComponent";
+import PaymentDrawer from "../components/PaymentDrawer";
+import DeleteModal from "../components/DeleteModal";
 import * as keyframes from '../utils/keyframes';
 
 function Review() {
@@ -32,7 +32,7 @@ function Review() {
     }
 
     const photosInFrames = photosArray.map((photo,index) =>
-        <Grid onClick={onOpenModal} id={index === 0 ? 'first': index+1 === photosArray.length ? 'last':undefined} h="253px" minW="253px" maxW="253px" maxH="253px" mx={2} key={photo.id} css={css`animation: ${keyframes.fadeIn} 0.5s ease;`} cursor="pointer">
+        <Grid onClick={onOpenModal} id={index === 0 ? 'first': index+1 === photosArray.length ? 'last':undefined} h="253px" minW="253px" maxW="253px" maxH="253px" key={photo.id} css={css`animation: ${keyframes.fadeIn} 0.5s ease;`} cursor="pointer">
             <Image maxW="100%" maxH="100%" minW="100%" minH="100%" p={2} src={photo.src} objectFit="cover" gridArea="1 / 1"/>
             <Image maxW="100%" maxH="100%" minW="100%" minH="100%" src={selectedFrame} gridArea="1 / 1"/>
         </Grid>);
@@ -43,20 +43,20 @@ function Review() {
             <Flex bgImage={"url(" + bg + ")"} bgPos="center top" bgRepeat="no-repeat" bgSize="cover"
                   w="100%"
                   h="100%"
+                  alignContent={"center"}
                   alignItems="center"
-                  justifyContent={photosArray.length===0? "center": "flex-start"}
-                  overflowX="auto"
-                  px={2}
+                  justifyContent={"center"}
+                  overflow="auto"
+                  px={"20%"}
                   css={css`-ms-overflow-style: none;scrollbar-width: none;::-webkit-scrollbar{display: none;}`}
+                  flexWrap={window.innerWidth> 760 ? "wrap" : "no-wrap"}
             >
-                <Flex pr={2} alignItems="center">
-                    <Flex mx={2}><UploadSquare isAnimating={photosArray.length===0} onUploadPhoto={addNewPhoto} position="left"/></Flex>
-                    {photosInFrames}
-                    {photosArray.length > 0 && <Flex mx={2} display={["flex","flex","none","none"]}><UploadSquare isAnimating={ false} onUploadPhoto={addNewPhoto} position="right"/></Flex>}
-                </Flex>
+                {photosArray.length > 0 && <Flex display={["flex","flex","none","none"]}><UploadSquare isAnimating={false} onUploadPhoto={addNewPhoto} position="left"/></Flex>}
+                {photosInFrames}
+                <Flex><UploadSquare isAnimating={photosArray.length===0} onUploadPhoto={addNewPhoto} position="right"/></Flex>
             </Flex>
-            <DrawerComponent isOpen={isOpenDrawer} onClose={onCloseDrawer}/>
-            <ModalComponent isOpen={isOpenModal} onClose={onCloseModal}></ModalComponent>
+            <PaymentDrawer isOpen={isOpenDrawer} onClose={onCloseDrawer}/>
+            <DeleteModal isOpen={isOpenModal} onClose={onCloseModal}></DeleteModal>
             <Footer onClickButton={onOpenDrawer}/>
         </Flex>
     );

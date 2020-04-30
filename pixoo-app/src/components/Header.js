@@ -25,7 +25,7 @@ function Header({onChangeFrame}) {
                 justifyContent="space-between"
             >
                 <Box as={FiChevronLeft} fontSize={["3xl"]} color="primary" onClick={() => navigate('../', { replace: false })} cursor={"pointer"}/>
-                <Text>Style Photos</Text>
+                <Text fontSize="">Style Photos</Text>
                 <Menu>
                     <MenuButton>
                         <Box as={FiMenu} fontSize={["3xl"]} color="primary"/>

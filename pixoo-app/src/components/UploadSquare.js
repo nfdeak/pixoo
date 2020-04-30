@@ -22,10 +22,10 @@ function UploadSquare({onUploadPhoto, isAnimating, position}) {
     return (
             <Flex id={position}
                   bg="hsla(0,0%,100%,.7)"
-                  maxH="238px"
-                  minH="238px"
-                  minW="238px"
-                  maxW="238px"
+                  maxH="253px"
+                  minH="253px"
+                  minW="253px"
+                  maxW="253px"
                   rounded="12px"
                   alignItems="center"
                   justifyContent="center"

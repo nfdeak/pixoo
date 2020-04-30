@@ -1,17 +1,9 @@
 /*@jsx jsx*/
 import { jsx , css } from "@emotion/core";
 import React from "react";
-import {
-    Modal,
-    ModalOverlay,
-    ModalContent,
-    ModalHeader,
-    ModalFooter,
-    ModalBody,
-    ModalCloseButton,Button
-} from "@chakra-ui/core";
+import {Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,Button} from "@chakra-ui/core";
 
-function ModallComponent({isOpen, onClose}) {
+function DeleteModal({isOpen, onClose, onDeletePicture}) {
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
@@ -19,9 +11,7 @@ function ModallComponent({isOpen, onClose}) {
                 <ModalHeader>Modal Title</ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
-
                 </ModalBody>
-
                 <ModalFooter>
                     <Button variantColor="blue" mr={3} onClick={onClose}>
                         Close
@@ -33,4 +23,4 @@ function ModallComponent({isOpen, onClose}) {
     );
 }
 
-export default ModallComponent;
+export default DeleteModal;
