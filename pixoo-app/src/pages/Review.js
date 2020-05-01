@@ -32,7 +32,7 @@ function Review() {
     }
 
     const photosInFrames = photosArray.map((photo,index) =>
-        <Grid onClick={onOpenModal} id={photosArray.length===1 ? 'last' : index === 0 ? 'first': index+1 === photosArray.length ? 'last' : undefined} h="253px" minW="253px" maxW="253px" maxH="253px" key={photo.id} css={css`animation: ${keyframes.fadeIn} 0.5s ease;`} cursor="pointer">
+        <Grid m={2} onClick={onOpenModal} id={photosArray.length===1 ? 'last' : index === 0 ? 'first': index+1 === photosArray.length ? 'last' : undefined} h={["160px","160px","253px"]} minW={["160px","160px","253px"]} maxW={["160px","160px","253px"]} maxH={["160px","160px","253px"]} key={photo.id} css={css`animation: ${keyframes.fadeIn} 0.5s ease;`} cursor="pointer">
             <Image maxW="100%" maxH="100%" minW="100%" minH="100%" p={2} src={photo.src} objectFit="cover" gridArea="1 / 1"/>
             <Image maxW="100%" maxH="100%" minW="100%" minH="100%" src={selectedFrame} gridArea="1 / 1"/>
         </Grid>);
@@ -43,16 +43,18 @@ function Review() {
             <Flex bgImage={"url(" + bg + ")"} bgPos="center top" bgRepeat="no-repeat" bgSize="cover"
                   w="100%"
                   h="100%"
-                  alignItems="center"
-                  justifyContent={[photosArray.length===0 ? "center" : "flex-start",photosArray.length===0 ? "center" : "flex-start","center"]}
                   overflow="auto"
-                  px={[2,2,"20%"]}
+                  alignContent={[photosArray.length>0? "flex-start" : null]}
+                  alignItems={[photosArray.length===0? "center" : null]}
+                  justifyContent={["center"]}
+                  pt={photosArray.length===0? null : 2}
+                  px={[2,2,"10%","20%"]}
                   css={css`-ms-overflow-style: none;scrollbar-width: none;::-webkit-scrollbar{display: none;}`}
-                  flexWrap={["no-wrap","no-wrap","wrap"]}
+                  flexWrap={["wrap"]}
             >
-                {photosArray.length > 0 && <Flex display={["flex","flex","none","none"]}><UploadSquare isAnimating={false} onUploadPhoto={addNewPhoto} position="left"/></Flex>}
+                {/*{photosArray.length > 0 && <Flex m={2} display={["flex","flex","none","none","none"]}><UploadSquare isAnimating={false} onUploadPhoto={addNewPhoto} position="left"/></Flex>}*/}
                 {photosInFrames}
-                <Flex><UploadSquare isAnimating={photosArray.length===0} onUploadPhoto={addNewPhoto} position="right"/></Flex>
+                <Flex  m={2} mb={4}><UploadSquare isAnimating={photosArray.length===0} onUploadPhoto={addNewPhoto} position="right"/></Flex>
             </Flex>
             <PaymentDrawer isOpen={isOpenDrawer} onClose={onCloseDrawer}/>
             <DeleteModal isOpen={isOpenModal} onClose={onCloseModal}></DeleteModal>

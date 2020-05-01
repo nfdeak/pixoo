@@ -25,7 +25,6 @@ function Header({onChangeFrame}) {
                 justifyContent="space-between"
             >
                 <Box as={FiChevronLeft} fontSize={["3xl"]} color="primary" onClick={() => navigate('../', { replace: false })} cursor={"pointer"}/>
-                <Text fontSize="">Style Photos</Text>
                 <Menu>
                     <MenuButton>
                         <Box as={FiMenu} fontSize={["3xl"]} color="primary"/>
@@ -36,15 +35,15 @@ function Header({onChangeFrame}) {
                     </MenuList>
                 </Menu>
             </Flex>
-            <Flex
-                alignItems="center"
-                justifyContent="center"
-            >
-                <Image cursor="pointer" src={white} w="75px" h="83px" onClick={()=>selectFrame('white')} backgroundImage={selectedFrame === 'white' ? "linear-gradient(0deg,rgba(255,0,149,.25),rgba(255,0,149,0))":undefined}/>
-                <Image cursor="pointer" src={black} w="75px" h="83px" onClick={()=>selectFrame('black')} backgroundImage={selectedFrame === 'black' ? "linear-gradient(0deg,rgba(255,0,149,.25),rgba(255,0,149,0))":undefined}/>
-                <Image cursor="pointer" src={mocha} w="75px" h="83px" onClick={()=>selectFrame('mocha')} backgroundImage={selectedFrame === 'mocha' ? "linear-gradient(0deg,rgba(255,0,149,.25),rgba(255,0,149,0))":undefined}/>
-                <Image cursor="pointer" src={latte} w="75px" h="83px" onClick={()=>selectFrame('latte')} backgroundImage={selectedFrame === 'latte' ? "linear-gradient(0deg,rgba(255,0,149,.25),rgba(255,0,149,0))":undefined}/>
-            </Flex>
+            {/*<Flex*/}
+            {/*    alignItems="center"*/}
+            {/*    justifyContent="center"*/}
+            {/*>*/}
+            {/*    <Image cursor="pointer" src={white} w="75px" h="83px" onClick={()=>selectFrame('white')} backgroundImage={selectedFrame === 'white' ? "linear-gradient(0deg,rgba(255,0,149,.25),rgba(255,0,149,0))":undefined}/>*/}
+            {/*    <Image cursor="pointer" src={black} w="75px" h="83px" onClick={()=>selectFrame('black')} backgroundImage={selectedFrame === 'black' ? "linear-gradient(0deg,rgba(255,0,149,.25),rgba(255,0,149,0))":undefined}/>*/}
+            {/*    <Image cursor="pointer" src={mocha} w="75px" h="83px" onClick={()=>selectFrame('mocha')} backgroundImage={selectedFrame === 'mocha' ? "linear-gradient(0deg,rgba(255,0,149,.25),rgba(255,0,149,0))":undefined}/>*/}
+            {/*    <Image cursor="pointer" src={latte} w="75px" h="83px" onClick={()=>selectFrame('latte')} backgroundImage={selectedFrame === 'latte' ? "linear-gradient(0deg,rgba(255,0,149,.25),rgba(255,0,149,0))":undefined}/>*/}
+            {/*</Flex>*/}
         </Box>
     );
 };
