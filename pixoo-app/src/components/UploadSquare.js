@@ -22,14 +22,14 @@ function UploadSquare({onUploadPhoto, isAnimating, position}) {
     return (
             <Flex id={position}
                   bg="hsla(0,0%,100%,.7)"
-                  maxH={["160px","160px","247px"]}
-                  minW={["160px","160px","247px"]}
-                  minH={["160px","160px","247px"]}
-                  maxW={["160px","160px","247px"]}
+                  maxH={["244px"]}
+                  minH={["244px"]}
+                  minW={["244px"]}
+                  maxW={["244px"]}
                   rounded="12px"
                   alignItems="center"
                   justifyContent="center"
-                  onClick={() => {imageUploaderRef.current.click(); document.getElementById(position).scrollIntoView({ inline: 'center',behavior: 'smooth' })}}
+                  onClick={() => {imageUploaderRef.current.click(); document.getElementById(position).scrollIntoView({ block: 'center',behavior: 'smooth' })}}
                   cursor="pointer"
                   border='4px dashed grey'
                   color='grey'
