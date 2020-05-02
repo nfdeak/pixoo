@@ -8,7 +8,7 @@ function DeleteModal({isOpen, onClose, onDeletePhoto}) {
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent rounded="12px" width={'85%'} m="0 auto" position="fixed" left="50%" bottom="-41px" transform="translate(-50%, -50%)" css={css`animation: ${keyframes.slideInFromBottom} 1.5s ease;`} top="undefined !important">
+            <ModalContent rounded="12px" width={'85%'} position="absolute" left="50%" bottom="0" m={0} css={css`animation: ${keyframes.slideInFromBottom} .5s ease both;`} top="undefined !important">
                 <Flex direction="column" width="100%" alignItems="center" >
                     <Flex alignItems="center" w={"100%"}> <PseudoBox
                         as="button"

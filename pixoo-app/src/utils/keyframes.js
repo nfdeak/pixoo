@@ -23,10 +23,10 @@ export const fadeIn = keyframes`
     `
 
 export const slideInFromBottom = keyframes`
-      0% {
-        max-height:0%
-      }
-      100% {
-        max-height:100%
-      }
-    `
+  0% {
+    transform: translate(-50%, 0);
+  }
+  100% {
+    transform: translate(-50%,-10px);
+  }
+   `
