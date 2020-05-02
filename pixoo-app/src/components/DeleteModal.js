@@ -1,23 +1,44 @@
 /*@jsx jsx*/
 import { jsx , css } from "@emotion/core";
 import React from "react";
-import {Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,Button} from "@chakra-ui/core";
+import {Modal, ModalOverlay, ModalContent, Flex, PseudoBox} from "@chakra-ui/core";
+import * as keyframes from '../utils/keyframes';
 
-function DeleteModal({isOpen, onClose, onDeletePicture}) {
+function DeleteModal({isOpen, onClose, onDeletePhoto}) {
     return (
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
-            <ModalContent>
-                <ModalHeader>Modal Title</ModalHeader>
-                <ModalCloseButton />
-                <ModalBody>
-                </ModalBody>
-                <ModalFooter>
-                    <Button variantColor="blue" mr={3} onClick={onClose}>
+            <ModalContent rounded="12px" width={'85%'} m="0 auto" position="fixed" left="50%" bottom="-41px" transform="translate(-50%, -50%)" css={css`animation: ${keyframes.slideInFromBottom} 1.5s ease;`} top="undefined !important">
+                <Flex direction="column" width="100%" alignItems="center" >
+                    <Flex alignItems="center" w={"100%"}> <PseudoBox
+                        as="button"
+                        height="55px"
+                        width={'100%'}
+                        borderTopRightRadius={"12px"}
+                        borderTopLeftRadius={"12px"}
+                        fontSize="18px"
+                        fontWeight="bold"
+                        bg="lightgrey"
+                        color="white"
+                        onClick={onClose}
+                    >
                         Close
-                    </Button>
-                    <Button variant="ghost">Secondary Action</Button>
-                </ModalFooter>
+                    </PseudoBox></Flex>
+                    <Flex alignItems="center" w={"100%"}> <PseudoBox
+                        as="button"
+                        height="55px"
+                        width={'100%'}
+                        fontSize="18px"
+                        fontWeight="bold"
+                        bg="primary"
+                        color="white"
+                        borderBottomRightRadius={"12px"}
+                        borderBottomLeftRadius={"12px"}
+                        onClick={onDeletePhoto}
+                    >
+                        Delete
+                    </PseudoBox></Flex>
+                </Flex>
             </ModalContent>
         </Modal>
     );

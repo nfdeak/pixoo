@@ -18,12 +18,20 @@ function Review() {
 
     const [photosArray, setPhotosArray] = useState([])
     const [selectedFrame, setSelectedFrame] = useState(white);
+    const [selectedPhotoId, setSelectedPhotoId] = useState(null);
 
     const onChangeFrame  = (frame) => {
         setSelectedFrame(frame==='white'? white :(frame==='black'? black : (frame==='mocha' ? black:(frame==='latte' ? black:undefined))));
     }
 
-    const removePhoto  = () => {
+    const onCLickFrame = (id) =>{
+        onOpenModal();
+        setSelectedPhotoId(id);
+    }
+
+    const onDeletePhoto  = () => {
+        setPhotosArray(photosArray.filter((photo)=>(photo.id !== selectedPhotoId)));
+        onCloseModal();
     }
 
     const addNewPhoto  = (base64URL, position) => {
@@ -32,7 +40,7 @@ function Review() {
     }
 
     const photosInFrames = photosArray.map((photo,index) =>
-        <Grid m={2} onClick={onOpenModal} id={photosArray.length===1 ? 'last' : index === 0 ? 'first': index+1 === photosArray.length ? 'last' : undefined} h={["253px"]} w={["253px"]} key={photo.id} css={css`animation: ${keyframes.fadeIn} 0.5s ease;`} cursor="pointer">
+        <Grid m={2} onClick={()=>onCLickFrame(photo.id)} id={photosArray.length===1 ? 'last' : index === 0 ? 'first': index+1 === photosArray.length ? 'last' : undefined} h={["253px"]} w={["253px"]} key={photo.id} css={css`animation: ${keyframes.fadeIn} 0.5s ease;`} cursor="pointer">
             <Image maxW="100%" maxH="100%" minW="100%" minH="100%" p={2} src={photo.src} objectFit="cover" gridArea="1 / 1"/>
             <Image src={selectedFrame} gridArea="1 / 1"/>
         </Grid>);
@@ -45,7 +53,7 @@ function Review() {
                     maxW="850px"
                     h="100%"
                     overflow="auto"
-                    alignContent={[null,null,null,photosArray.length>=3 ? "flex-start" : "center"]}
+                    alignContent={[null,photosArray.length>=1 ? "flex-start" : "center",null,photosArray.length>=3 ? "flex-start" : "center"]}
                     alignItems={[photosArray.length===0 && "center" ]}
                     justifyContent={["center"]}
                     py={2}
@@ -58,7 +66,7 @@ function Review() {
                 </Flex>
             </Flex>
             <PaymentDrawer isOpen={isOpenDrawer} onClose={onCloseDrawer}/>
-            <DeleteModal isOpen={isOpenModal} onClose={onCloseModal} ></DeleteModal>
+            <DeleteModal isOpen={isOpenModal} onClose={onCloseModal} onDeletePhoto={onDeletePhoto}></DeleteModal>
             <Footer onClickButton={onOpenDrawer}/>
         </Flex>
     );

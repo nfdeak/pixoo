@@ -21,3 +21,12 @@ export const fadeIn = keyframes`
         opacity:1
       }
     `
+
+export const slideInFromBottom = keyframes`
+      0% {
+        max-height:0%
+      }
+      100% {
+        max-height:100%
+      }
+    `
