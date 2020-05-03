@@ -10,10 +10,7 @@ function UploadSquare({onUploadPhoto, isAnimating, position}) {
 
     const handleImageUpload = async (e) => {
         let files = [...e.target.files];
-        let isLoading = true;
         let images = await Promise.all(files.map(f=>{return readAsDataURL(f)}));
-        isLoading = false;
-        console.log(images);
         onUploadPhoto(images, position);
     };
 

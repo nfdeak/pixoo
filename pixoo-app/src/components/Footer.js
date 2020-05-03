@@ -15,7 +15,7 @@ function Footer ({onClickButton}) {
             <PseudoBox
                 as="button"
                 height="50px"
-                width={["93%","93%","43%", "29%"]}
+                width={["93%","93%","43%", "29%","20%"]}
                 rounded="12px"
                 fontSize="18px"
                 fontWeight="bold"

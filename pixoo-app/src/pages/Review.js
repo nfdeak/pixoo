@@ -1,7 +1,7 @@
 /*@jsx jsx*/
 import { jsx , css } from "@emotion/core";
-import React, { useState, useEffect } from "react";
-import {Flex, Image, Grid, useDisclosure} from '@chakra-ui/core';
+import React, { useState } from "react";
+import {Flex, useDisclosure} from '@chakra-ui/core';
 import UploadSquare from "../components/UploadSquare";
 import bg from '../resources/bg.jpg';
 import white from '../resources/whiteFrame.svg';
@@ -10,7 +10,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import PaymentDrawer from "../components/PaymentDrawer";
 import DeleteModal from "../components/DeleteModal";
-import * as keyframes from '../utils/keyframes';
+import FramedPicture from "../components/FramedPicture";
 
 function Review() {
     const {isOpen: isOpenDrawer, onOpen: onOpenDrawer, onClose: onCloseDrawer, onToggle:onToggleDrawer} = useDisclosure();
@@ -39,11 +39,7 @@ function Review() {
         window.innerWidth> 760 ? document.getElementById('right').scrollIntoView({ block: 'center',behavior: 'smooth' }) : position === 'right' ? document.getElementById('last').scrollIntoView({ block: 'center',behavior: 'smooth' }) : document.getElementById('first').scrollIntoView({ block: 'center',behavior: 'smooth' });
     }
 
-    const photosInFrames = photosArray.map((photo,index) =>
-        <Grid m={2} onClick={()=>onCLickFrame(photo.id)} id={photosArray.length===1 ? 'last' : index === 0 ? 'first': index+1 === photosArray.length ? 'last' : undefined} h={["253px"]} w={["253px"]} key={photo.id} css={css`animation: ${keyframes.fadeIn} 0.5s ease;`} cursor="pointer">
-            <Image maxW="100%" maxH="100%" minW="100%" minH="100%" p={2} src={photo.src} objectFit="cover" gridArea="1 / 1"/>
-            <Image src={selectedFrame} gridArea="1 / 1"/>
-        </Grid>);
+    const photosInFrames = photosArray.map((photo,index) => <FramedPicture key={photo.id}  photo={photo} index={index} length={photosArray.length} selectedFrame={selectedFrame} onCLickFrame={onCLickFrame}/>);
 
     return (
         <Flex direction="column" h="100%">
