@@ -8,16 +8,24 @@ import * as keyframes from '../utils/keyframes';
 function UploadSquare({onUploadPhoto, isAnimating, position}) {
     const imageUploaderRef = React.useRef();
 
-    const handleImageUpload = e => {
-        const [file] = e.target.files;
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = e => {
-                onUploadPhoto(e.target.result,position);
-            };
-            reader.readAsDataURL(file);
-        }
+    const handleImageUpload = async (e) => {
+        let files = [...e.target.files];
+        let isLoading = true;
+        let images = await Promise.all(files.map(f=>{return readAsDataURL(f)}));
+        isLoading = false;
+        console.log(images);
+        onUploadPhoto(images, position);
     };
+
+    function readAsDataURL(file) {
+        return new Promise((resolve, reject)=>{
+            let fileReader = new FileReader();
+            fileReader.onload = function(){
+                return resolve({src:fileReader.result, name:file.name, size: file.size, type: file.type, id:Date.now()});
+            }
+            fileReader.readAsDataURL(file);
+        })
+    }
 
     return (
             <Flex id={position}
@@ -36,7 +44,7 @@ function UploadSquare({onUploadPhoto, isAnimating, position}) {
                   css={isAnimating? css`animation: ${keyframes.pulse} 1.7s linear infinite;animation-play-state:running; &:hover {animation-play-state:paused;}` : undefined}
             >
                 <Box as={FiPlus} fontSize="45px"/>
-                <Input value={""} type="file" accept="image/*" onChange={handleImageUpload} ref={imageUploaderRef} display="none"/>
+                <Input value={""} type="file" accept="image/*" onChange={handleImageUpload} multiple="multiple" ref={imageUploaderRef} display="none"/>
             </Flex>
     );
 };

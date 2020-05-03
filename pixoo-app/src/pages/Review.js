@@ -34,8 +34,8 @@ function Review() {
         onCloseModal();
     }
 
-    const addNewPhoto  = (base64URL, position) => {
-        setPhotosArray(position === 'right' ?  photosArray => photosArray.concat([{src:base64URL, id: Date.now()}]): photosArray => [{src:base64URL, id: Date.now()}].concat(photosArray));
+    const addNewPhoto  = (base64URLs, position) => {
+        setPhotosArray(position === 'right' ?  photosArray => photosArray.concat(base64URLs): photosArray => base64URLs.concat(photosArray));
         window.innerWidth> 760 ? document.getElementById('right').scrollIntoView({ block: 'center',behavior: 'smooth' }) : position === 'right' ? document.getElementById('last').scrollIntoView({ block: 'center',behavior: 'smooth' }) : document.getElementById('first').scrollIntoView({ block: 'center',behavior: 'smooth' });
     }
 
