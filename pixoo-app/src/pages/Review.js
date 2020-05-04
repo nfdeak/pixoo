@@ -1,7 +1,7 @@
 /*@jsx jsx*/
 import { jsx , css } from "@emotion/core";
 import React, { useState } from "react";
-import {Flex, useDisclosure} from '@chakra-ui/core';
+import {Flex, useDisclosure, Text} from '@chakra-ui/core';
 import UploadSquare from "../components/UploadSquare";
 import bg from '../resources/bg.jpg';
 import white from '../resources/whiteFrame.svg';
@@ -44,7 +44,8 @@ function Review() {
     return (
         <Flex direction="column" h="100%">
             <Header onChangeFrame={onChangeFrame}/>
-            <Flex h="100%" bgImage={"url(" + bg + ")"} bgPos="center top" bgRepeat="no-repeat" bgSize="cover" overflow="auto" justifyContent="center">
+            <Flex position="relative" h="100%" bgImage={"url(" + bg + ")"} bgPos="center top" bgRepeat="no-repeat" bgSize="cover" overflow="auto" justifyContent="center">
+                <Text position="absolute" top="30px" textTransform="uppercase" fontWeight= "700" fontSize="14px" letterSpacing='1.6px' color='#8c8c8c' my={4}>PICK SOME PHOTOS</Text>
                 <Flex
                     maxW="850px"
                     h="100%"

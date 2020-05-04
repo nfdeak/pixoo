@@ -1,6 +1,6 @@
 import React from "react";
 import {Router} from "@reach/router";
-import { theme, ThemeProvider, CSSReset, Grid } from "@chakra-ui/core";
+import { theme, ThemeProvider, CSSReset } from "@chakra-ui/core";
 import Home from "./pages/Home";
 import Review from "./pages/Review";
 import NotFound from "./pages/NotFound";
@@ -16,6 +16,7 @@ export const newTheme = {
     ...theme,
     breakpoints,
     colors: { ...theme.colors, primary: primary},
+    shadows: {...theme.shadows, outline:'0 !important'},
 };
 
 export default () => (
