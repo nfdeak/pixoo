@@ -16,7 +16,6 @@ export const newTheme = {
     ...theme,
     breakpoints,
     colors: { ...theme.colors, primary: primary},
-    shadows: {...theme.shadows, outline:'0 !important'},
 };
 
 export default () => (

@@ -45,12 +45,12 @@ function Review() {
         <Flex direction="column" h="100%">
             <Header onChangeFrame={onChangeFrame}/>
             <Flex position="relative" h="100%" bgImage={"url(" + bg + ")"} bgPos="center top" bgRepeat="no-repeat" bgSize="cover" overflow="auto" justifyContent="center">
-                <Text position="absolute" top="30px" textTransform="uppercase" fontWeight= "700" fontSize="14px" letterSpacing='1.6px' color='#8c8c8c' my={4}>PICK SOME PHOTOS</Text>
+                {photosArray.length==0 && <Text position="absolute" left={'50%'} top={'50%'} height="400px" transform={"translate(-50%,-50%)"}  textAlign="center" textTransform="uppercase" fontWeight= "700" fontSize="14px" letterSpacing='1.6px' color='#8c8c8c' my={4}>PICK SOME PHOTOS</Text>}
                 <Flex
-                    maxW="850px"
+                    maxW="1070px"
                     h="100%"
                     overflow="auto"
-                    alignContent={[null,photosArray.length>=1 ? "flex-start" : "center",null,photosArray.length>=3 ? "flex-start" : "center"]}
+                    alignContent={[null,photosArray.length>=1 ? "flex-start" : "center",null,photosArray.length>3 ? "flex-start" : "center"]}
                     alignItems={[photosArray.length===0 && "center" ]}
                     justifyContent={["center"]}
                     py={2}
@@ -62,7 +62,7 @@ function Review() {
                     <Flex  m={2}><UploadSquare isAnimating={photosArray.length===0} onUploadPhoto={addNewPhoto} position="right"/></Flex>
                 </Flex>
             </Flex>
-            <PaymentDrawer isOpen={isOpenDrawer} onClose={onCloseDrawer}/>
+            <PaymentDrawer isOpen={isOpenDrawer} onClose={onCloseDrawer} nrOfPhotos={photosArray.length}/>
             <DeleteModal isOpen={isOpenModal} onClose={onCloseModal} onDeletePhoto={onDeletePhoto}></DeleteModal>
             <Footer onClickButton={onOpenDrawer}/>
         </Flex>
