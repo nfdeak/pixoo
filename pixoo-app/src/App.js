@@ -1,3 +1,4 @@
+import { Global, css } from '@emotion/core'
 import React from "react";
 import {Router} from "@reach/router";
 import { theme, ThemeProvider, CSSReset } from "@chakra-ui/core";
@@ -21,6 +22,11 @@ export const newTheme = {
 export default () => (
     <ThemeProvider theme={newTheme}>
         <CSSReset />
+        <Global styles={css`
+        * {
+          outline: none !important;
+        }
+      `}/>
         <Router>
             <Home path="/" />
             <Review path="review" />
