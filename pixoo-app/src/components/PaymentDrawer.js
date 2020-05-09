@@ -30,6 +30,7 @@ function PaymentDrawer({isOpen, onClose, nrOfPhotos}) {
                             clientId: "AePihhh1D3viVFYRT-2AewK94LJHaPSJoCK4TEJB9q1LKVTmPll8zOs-5cdJ0AeWcoxttbcmNiD3huuX"
                         }}
                     />
+                    <Flex h={'80px'} />
                 </DrawerBody>
             </DrawerContent>
         </Drawer>

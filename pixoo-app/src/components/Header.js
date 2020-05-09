@@ -1,13 +1,17 @@
 import React, {useState} from 'react';
-import {Flex, Box, Text, Image,Menu,MenuButton,MenuList,MenuItem} from '@chakra-ui/core';
+import {Flex, Box, Text, Image,Menu,MenuButton,MenuList,MenuItem, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton,} from '@chakra-ui/core';
 import {FiChevronLeft, FiMenu} from "react-icons/fi";
 import { useNavigate } from "@reach/router"
 import white from '../resources/white.png';
 import black from '../resources/black.png';
 import mocha from '../resources/mocha.png';
 import latte from '../resources/latte.png';
+import {faqText} from "../utils/faq";
+import {jsx} from "@emotion/core";
 
 function Header({onChangeFrame}) {
+    const questionsAndAswersArray = faqText;
+    const { isOpen, onOpen, onClose } = useDisclosure();
     const [selectedFrame, setSelectedFrame] = useState('white');
     const navigate = useNavigate();
 
@@ -17,6 +21,12 @@ function Header({onChangeFrame}) {
         onChangeFrame(frame);
     }
 
+    const questionsAndAnswers = questionsAndAswersArray.map((faq,index) =>
+        <Flex py={2} d={'column'} key={index}>
+            <Text pb={1} color={'primary'} fontSize='20px' fontWeight={'bold'}>{faq.question}</Text>
+            <Text>{faq.answer}</Text>
+        </Flex>);
+
     return (
         <Box bg="#ffffff" width="100%" boxShadow="xl" zIndex={1}>
             <Flex
@@ -25,16 +35,29 @@ function Header({onChangeFrame}) {
                 justifyContent="space-between"
             >
                 <Box as={FiChevronLeft} fontSize={["3xl"]} color="primary" onClick={() => navigate('../', { replace: false })} cursor={"pointer"}/>
+                <Image src={"https://www.mixtiles.com/images/logo.png"} p={1}/>
                 <Menu>
                     <MenuButton>
                         <Box as={FiMenu} fontSize={["3xl"]} color="primary"/>
                     </MenuButton>
                     <MenuList>
-                        <MenuItem>New File</MenuItem>
-                        <MenuItem>New Window</MenuItem>
+                        <MenuItem onClick={onOpen}>Frequent Questions</MenuItem>
+                        <MenuItem>Talk to Us</MenuItem>
                     </MenuList>
                 </Menu>
             </Flex>
+            <Modal onClose={onClose} isOpen={isOpen} isCentered scrollBehavior="inside">
+                <ModalOverlay />
+                <ModalContent height="75% !important" rounded="12px">
+                    <ModalHeader>Frequent Questions</ModalHeader>
+                    <ModalCloseButton top="14px"/>
+                    <ModalBody>
+                        <Flex d={'column'}>
+                            {questionsAndAnswers}
+                        </Flex>
+                    </ModalBody>
+                </ModalContent>
+            </Modal>
             {/*<Flex*/}
             {/*    alignItems="center"*/}
             {/*    justifyContent="center"*/}

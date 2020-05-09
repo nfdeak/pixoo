@@ -16,17 +16,14 @@ breakpoints.xl = breakpoints[3];
 export const newTheme = {
     ...theme,
     breakpoints,
+    shadows: { ...theme.shadows, outline: "none"},
     colors: { ...theme.colors, primary: primary},
 };
 
 export default () => (
     <ThemeProvider theme={newTheme}>
         <CSSReset />
-        <Global styles={css`
-        * {
-          outline: none !important;
-        }
-      `}/>
+        <Global styles={css`*,*:focus {outline: none !important;}`}/>
         <Router>
             <Home path="/" />
             <Review path="review" />

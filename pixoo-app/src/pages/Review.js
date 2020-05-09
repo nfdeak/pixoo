@@ -64,7 +64,7 @@ function Review() {
             </Flex>
             <PaymentDrawer isOpen={isOpenDrawer} onClose={onCloseDrawer} nrOfPhotos={photosArray.length}/>
             <DeleteModal isOpen={isOpenModal} onClose={onCloseModal} onDeletePhoto={onDeletePhoto}></DeleteModal>
-            <Footer onClickButton={onOpenDrawer}/>
+            <Footer onClickButton={onOpenDrawer} text={"Checkout"}/>
         </Flex>
     );
 }
