@@ -1,7 +1,7 @@
 import {Flex, PseudoBox} from "@chakra-ui/core";
 import React from "react";
 
-function Footer ({onClickButton, text}) {
+function Footer ({onClickButton, text, buttonIsDisabled}) {
     return (
         <Flex
             p={4}
@@ -22,6 +22,7 @@ function Footer ({onClickButton, text}) {
                 bg="primary"
                 color="white"
                 onClick={onClickButton}
+                disabled={buttonIsDisabled}
             >
                 {text}
             </PseudoBox>

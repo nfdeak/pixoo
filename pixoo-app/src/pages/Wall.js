@@ -64,7 +64,7 @@ function Wall() {
             </Flex>
             <PaymentDrawer isOpen={isOpenDrawer} onClose={onCloseDrawer} nrOfPhotos={photosArray.length}/>
             <DeleteModal isOpen={isOpenModal} onClose={onCloseModal} onDeletePhoto={onDeletePhoto}></DeleteModal>
-            <Footer onClickButton={onOpenDrawer} text={"Checkout"}/>
+            <Footer onClickButton={onOpenDrawer} text={"Checkout"} buttonIsDisabled={photosArray.length===0? true: false}/>
         </Flex>
     );
 }

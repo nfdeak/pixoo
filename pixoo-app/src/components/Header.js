@@ -15,7 +15,6 @@ function Header({onChangeFrame}) {
     const [selectedFrame, setSelectedFrame] = useState('white');
     const navigate = useNavigate();
 
-
     const selectFrame  = (frame) => {
         setSelectedFrame(frame);
         onChangeFrame(frame);

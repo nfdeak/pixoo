@@ -1,2 +1,1 @@
-export const threeTilesPrice = 58 ;
-export const oneTilePrice= 9;
+export const oneTilePrice= 8.99;
