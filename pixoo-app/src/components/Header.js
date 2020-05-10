@@ -30,19 +30,21 @@ function Header({onChangeFrame}) {
     return (
         <Box bg="#ffffff" width="100%" boxShadow="xl" zIndex={1}>
             <Flex
-                p={2}
+                p={3}
                 alignItems="center"
                 justifyContent="space-between"
             >
                 <Box as={FiChevronLeft} fontSize={["3xl"]} color="primary" onClick={() => navigate('../', { replace: false })} cursor={"pointer"}/>
-                <Image src={"https://www.mixtiles.com/images/logo.png"} p={1}/>
+                <Image src={"https://www.mixtiles.com/images/logo.png"}/>
                 <Menu>
                     <MenuButton>
                         <Box as={FiMenu} fontSize={["3xl"]} color="primary"/>
                     </MenuButton>
                     <MenuList>
                         <MenuItem onClick={onOpen}>Frequent Questions</MenuItem>
-                        <MenuItem>Talk to Us</MenuItem>
+                        <a href="javascript:void(Tawk_API.toggle())">
+                            <MenuItem>Talk to Us</MenuItem>
+                        </a>
                     </MenuList>
                 </Menu>
             </Flex>
