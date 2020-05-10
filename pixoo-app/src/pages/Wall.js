@@ -12,7 +12,7 @@ import PaymentDrawer from "../components/PaymentDrawer";
 import DeleteModal from "../components/DeleteModal";
 import FramedPicture from "../components/FramedPicture";
 
-function Review() {
+function Wall() {
     const {isOpen: isOpenDrawer, onOpen: onOpenDrawer, onClose: onCloseDrawer, onToggle:onToggleDrawer} = useDisclosure();
     const {isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal, onToggle:onToggleModal} = useDisclosure();
 
@@ -69,4 +69,4 @@ function Review() {
     );
 }
 
-export default Review;
+export default Wall;

@@ -3,8 +3,9 @@ import React from "react";
 import {Router} from "@reach/router";
 import { theme, ThemeProvider, CSSReset } from "@chakra-ui/core";
 import Home from "./pages/Home";
-import Review from "./pages/Review";
+import Wall from "./pages/Wall";
 import NotFound from "./pages/NotFound";
+import PaymentSuccess from "./pages/PaymentSuccess";
 import {primary} from "./utils/colors";
 
 const breakpoints = ["360px", "768px", "1024px", "1440px"];
@@ -26,7 +27,8 @@ export default () => (
         <Global styles={css`*,*:focus {outline: none !important;}`}/>
         <Router>
             <Home path="/" />
-            <Review path="review" />
+            <Wall path="wall" />
+            <PaymentSuccess path="success" />
             <NotFound default/>
         </Router>
     </ThemeProvider>

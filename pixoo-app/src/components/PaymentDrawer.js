@@ -25,12 +25,19 @@ function PaymentDrawer({isOpen, onClose, nrOfPhotos}) {
                         style={{color:'blue', shape:'pill', height:45, label:'pay'}}
                         onSuccess={(details, data) => {
                             alert("Transaction completed by " + details.payer.name.given_name);
+                            // // OPTIONAL: Call your server to save the transaction
+                            // return fetch("/paypal-transaction-complete", {
+                            //     method: "post",
+                            //     body: JSON.stringify({
+                            //         orderID: data.orderID
+                            //     })
+                            // });
                         }}
                         options={{
                             clientId: "AePihhh1D3viVFYRT-2AewK94LJHaPSJoCK4TEJB9q1LKVTmPll8zOs-5cdJ0AeWcoxttbcmNiD3huuX"
                         }}
                     />
-                    <Flex h={'80px'} />
+                    <Flex h={['80px','80px','80px','0px']} />
                 </DrawerBody>
             </DrawerContent>
         </Drawer>
