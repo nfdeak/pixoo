@@ -36,7 +36,7 @@ function UploadSquare({onUploadPhoto, isAnimating, position}) {
                   justifyContent="center"
                   onClick={() => {imageUploaderRef.current.click(); document.getElementById(position).scrollIntoView({ block: 'center',behavior: 'smooth' })}}
                   cursor="pointer"
-                  border='4px dashed grey'
+                  border='4px solid grey'
                   color='grey'
                   css={isAnimating? css`animation: ${keyframes.pulse} 1.7s linear infinite;animation-play-state:running; &:hover {animation-play-state:paused;}` : undefined}
             >

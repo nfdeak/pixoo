@@ -26,8 +26,7 @@ export default () => (
         <CSSReset />
         <Global styles={css`*,*:focus {outline: none !important;}`}/>
         <Router>
-            <Home path="/" />
-            <Wall path="wall" />
+            <Wall path="/" />
             <PaymentSuccess path="success" />
             <NotFound default/>
         </Router>

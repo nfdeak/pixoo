@@ -1,70 +1,52 @@
 /*@jsx jsx*/
 import { jsx , css } from "@emotion/core";
 import React, { useState } from "react";
-import {Flex, useDisclosure, Text} from '@chakra-ui/core';
-import UploadSquare from "../components/UploadSquare";
-import bg from '../resources/bg.jpg';
-import white from '../resources/whiteFrame.svg';
-import black from '../resources/blackFrame.svg';
-import Header from "../components/Header";
+import {Flex, useDisclosure, Image, Input} from '@chakra-ui/core';
 import Footer from "../components/Footer";
-import PaymentDrawer from "../components/PaymentDrawer";
-import DeleteModal from "../components/DeleteModal";
 import FramedPicture from "../components/FramedPicture";
+import videoBg from '../resources/sample.mp4';
+import Header from "../components/Header";
+
+function readAsDataURL(file) {
+    return new Promise((resolve, reject)=>{
+        let fileReader = new FileReader();
+        fileReader.onload = function(){
+            return resolve({src:fileReader.result, name:file.name, size: file.size, type: file.type, id:Date.now()});
+        }
+        fileReader.readAsDataURL(file);
+    })
+}
 
 function Wall() {
-    const {isOpen: isOpenDrawer, onOpen: onOpenDrawer, onClose: onCloseDrawer, onToggle:onToggleDrawer} = useDisclosure();
-    const {isOpen: isOpenModal, onOpen: onOpenModal, onClose: onCloseModal, onToggle:onToggleModal} = useDisclosure();
-
+    const imageUploaderRef = React.useRef();
     const [photosArray, setPhotosArray] = useState([])
-    const [selectedFrame, setSelectedFrame] = useState(white);
-    const [selectedPhotoId, setSelectedPhotoId] = useState(null);
 
-    const onChangeFrame  = (frame) => {
-        setSelectedFrame(frame==='white'? white :(frame==='black'? black : (frame==='mocha' ? black:(frame==='latte' ? black:undefined))));
-    }
-
-    const onCLickFrame = (id) =>{
-        onOpenModal();
-        setSelectedPhotoId(id);
-    }
-
-    const onDeletePhoto  = () => {
-        setPhotosArray(photosArray.filter((photo)=>(photo.id !== selectedPhotoId)));
-        onCloseModal();
-    }
+    const handleImageUpload = async (e) => {
+        let files = [...e.target.files];
+        setPhotosArray(await Promise.all(files.map(f=>{return readAsDataURL(f)})));
+    };
 
     const addNewPhoto  = (base64URLs, position) => {
         setPhotosArray(position === 'right' ?  photosArray => photosArray.concat(base64URLs): photosArray => base64URLs.concat(photosArray));
-        window.innerWidth> 760 ? document.getElementById('right').scrollIntoView({ block: 'center',behavior: 'smooth' }) : position === 'right' ? document.getElementById('last').scrollIntoView({ block: 'center',behavior: 'smooth' }) : document.getElementById('first').scrollIntoView({ block: 'center',behavior: 'smooth' });
     }
 
-    const photosInFrames = photosArray.map((photo,index) => <FramedPicture key={photo.id}  photo={photo} index={index} length={photosArray.length} selectedFrame={selectedFrame} onCLickFrame={onCLickFrame}/>);
+    //const photosInFrames = photosArray.map((photo,index) => <FramedPicture key={photo.id}  photo={photo} index={index} length={photosArray.length} selectedFrame={selectedFrame} onCLickFrame={onCLickFrame}/>);
+
+    const slides = photosArray.map((photo) => {
+        const container = {};
+        container.key=  photo.id,
+        container.content = <img src={photo.src} alt="1" />
+        return container;
+    })
 
     return (
-        <Flex direction="column" h="100%">
-            <Header onChangeFrame={onChangeFrame}/>
-            <Flex position="relative" h="100%" bgImage={"url(" + bg + ")"} bgPos="center top" bgRepeat="no-repeat" bgSize="cover" overflow="auto" justifyContent="center">
-                {photosArray.length==0 && <Text position="absolute" left={'50%'} top={'50%'} height="400px" transform={"translate(-50%,-50%)"}  textAlign="center" textTransform="uppercase" fontWeight= "700" fontSize="14px" letterSpacing='1.6px' color='#8c8c8c' my={4}>PICK SOME PHOTOS</Text>}
-                <Flex
-                    maxW="1070px"
-                    h="100%"
-                    overflow="auto"
-                    alignContent={[null,photosArray.length>=1 ? "flex-start" : "center",null,photosArray.length>3 ? "flex-start" : "center"]}
-                    alignItems={[photosArray.length===0 && "center" ]}
-                    justifyContent={["center"]}
-                    py={2}
-                    css={css`-ms-overflow-style: none;scrollbar-width: none;::-webkit-scrollbar{display: none;}`}
-                    flexWrap={["wrap"]}
-                >
-                    {/*{photosArray.length > 0 && <Flex m={2} display={["flex","flex","none","none","none"]}><UploadSquare isAnimating={false} onUploadPhoto={addNewPhoto} position="left"/></Flex>}*/}
-                    {photosInFrames}
-                    <Flex  m={2}><UploadSquare isAnimating={photosArray.length===0} onUploadPhoto={addNewPhoto} position="right"/></Flex>
-                </Flex>
-            </Flex>
-            <PaymentDrawer isOpen={isOpenDrawer} onClose={onCloseDrawer} nrOfPhotos={photosArray.length}/>
-            <DeleteModal isOpen={isOpenModal} onClose={onCloseModal} onDeletePhoto={onDeletePhoto}></DeleteModal>
-            <Footer onClickButton={onOpenDrawer} text={"Checkout"} buttonIsDisabled={photosArray.length===0? true: false}/>
+        <Flex direction="column" h="100%" width="100%" overflow="auto" justifyContent="space-between" alignItems="center">
+           <Header onChangeFrame={null}/>
+           {photosArray.length == 0 ? <video css={css`height: 100vh; width: 100%; object-fit: cover;`} autoPlay loop muted playsInline>
+                <source src={videoBg} type='video/mp4' />
+            </video>: null}
+            <Input value={""} type="file" accept="image/*" onChange={handleImageUpload} multiple="multiple" ref={imageUploaderRef} display="none"/>
+            <Footer onClickButton={() => {imageUploaderRef.current.click()}} text={"Add Your Photos"} buttonIsDisabled={false}/>
         </Flex>
     );
 }

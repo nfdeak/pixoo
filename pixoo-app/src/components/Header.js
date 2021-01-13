@@ -8,6 +8,8 @@ import mocha from '../resources/mocha.png';
 import latte from '../resources/latte.png';
 import {faqText} from "../utils/faq";
 import {jsx} from "@emotion/core";
+import logo from '../resources/dark-logo.svg';
+
 
 function Header({onChangeFrame}) {
     const questionsAndAswersArray = faqText;
@@ -33,8 +35,8 @@ function Header({onChangeFrame}) {
                 alignItems="center"
                 justifyContent="space-between"
             >
-                <Box as={FiChevronLeft} fontSize={["3xl"]} color="primary" onClick={() => navigate('../', { replace: false })} cursor={"pointer"}/>
-                <Image src={"https://www.mixtiles.com/images/logo.png"}/>
+                <Box as={FiChevronLeft} fontSize={["3xl"]} color="white" onClick={() => navigate('../', { replace: false })} cursor={"pointer"}/>
+                <Image src={logo} width="110px"/>
                 <Menu>
                     <MenuButton>
                         <Box as={FiMenu} fontSize={["3xl"]} color="primary"/>
